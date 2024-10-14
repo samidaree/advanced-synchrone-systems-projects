@@ -1,4 +1,4 @@
-/* --- Generated the 14/10/2024 at 13:22 --- */
+/* --- Generated the 14/10/2024 at 13:33 --- */
 /* --- heptagon compiler, version 1.05.00 (compiled fri. sep. 27 23:48:47 CET 2024) --- */
 /* --- Command line: /home/sami/.opam/default/bin/heptc -target c moteur.ept --- */
 
@@ -17,20 +17,22 @@ void Moteur__hs_handler_step(int hs, Moteur__hs_handler_out* _out,
   Extern__f2_out Extern__f2_out_st;
   Extern__f1_out Extern__f1_out_st;
   
+  int v_1;
+  int v;
   int x;
-  int id_false;
-  int id_true;
-  int ck;
-  ck = hs;
-  if (ck) {
+  int id1;
+  int id2;
+  if (hs) {
     Extern__g_step(&Extern__g_out_st);
-    id_true = Extern__g_out_st.o;
-    _out->id = id_true;
+    v = Extern__g_out_st.o;
+    _out->id = v;
+    id1 = _out->id;
   } else {
     Extern__f1_step(self->y, &Extern__f1_out_st);
-    id_false = Extern__f1_out_st.o;
-    _out->id = id_false;
-    Extern__f2_step(_out->id, &Extern__f2_out_st);
+    v_1 = Extern__f1_out_st.o;
+    _out->id = v_1;
+    id2 = _out->id;
+    Extern__f2_step(id2, &Extern__f2_out_st);
     x = Extern__f2_out_st.o;
     self->y = x;
   };;

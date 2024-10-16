@@ -1,0 +1,41 @@
+open Extern
+
+node condact_gnc<<x_init:int>>(c:bool; y:int) returns (x:int)
+let
+x = merge c
+(true -> gnc (y when c))
+(false -> (x_init fby x) whenot c) ;
+tel
+
+node condact_f<<x_init:int>>(c:bool; y:int) returns (x:int)
+let
+(* execute quand c present*)
+x = merge c
+(true -> fast(y when c))
+(false -> (x_init fby x) whenot c) ;
+tel
+
+node call_thermal(c:bool) returns ()
+let
+() = thermal()
+tel
+
+node condact_thermal(c:bool) returns ()
+let
+(* execute quand c present*)
+() = call_thermal(true when c) ; 
+tel
+
+
+node main() returns ()
+var mif_cnt,x,y:int; clk_f,clk_gnc,clk_thermal:bool; let
+(* Clock computation *)
+mif_cnt = 0 fby ((mif_cnt+1)%10) ;
+clk_f = true ;
+clk_thermal = (mif_cnt = 0) ;
+clk_gnc = (mif_cnt = 9) ;
+(* Flot de données *)
+y = condact_f<<31>>(clk_f,99 fby x) ;
+()= condact_thermal(true when clk_thermal) ;
+x = condact_gnc<<99>>(clk_gnc,y) ;
+tel

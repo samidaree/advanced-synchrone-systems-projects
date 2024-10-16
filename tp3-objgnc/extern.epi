@@ -1,0 +1,5 @@
+open Extern 
+
+fun gnc(i:int) returns (o: int)
+fun fast(i:int) returns (o: int)
+fun thermal() returns ()

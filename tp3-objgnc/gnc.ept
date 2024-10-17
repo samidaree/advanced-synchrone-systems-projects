@@ -1,10 +1,38 @@
 open Extern
 
+node gnc(i:int) returns (o: int) 
+var cnt : int; 
+let 
+cnt = 0 fby (cnt+1) ;
+o = i - cnt ;
+() = print_gnc(cnt, i , o) ;
+tel 
+
+node fast(i:int) returns (o: int) 
+var cnt : int; 
+let 
+cnt = 0 fby (cnt+1) ;
+o = 2*i + cnt ;
+() = print_fast(cnt, i , o) ;
+tel 
+
+node thermal() returns () 
+var cnt : int; 
+let
+cnt = 0 fby (cnt + 1); 
+() = print_thermal(cnt) ;
+tel 
+
+
+
 node condact_gnc<<x_init:int>>(c:bool; y:int) returns (x:int)
+var w,q: int ;
 let
 x = merge c
-(true -> gnc (y when c))
-(false -> (x_init fby x) whenot c) ;
+    (true->q)
+    (false -> w) ;
+w =  (x_init fby x) whenot c;
+q = gnc (y when c);
 tel
 
 node condact_f<<x_init:int>>(c:bool; y:int) returns (x:int)

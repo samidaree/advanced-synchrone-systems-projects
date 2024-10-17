@@ -1,19 +1,15 @@
 #include "extern.h"
 
-void Extern__fast_step(int i, Extern__fast_out* _out){
-    printf("Fast : cpt = %d ; entree=%d\n",_out->o, i) ;
-    _out->o = _out->o + 1;
-    i = 2*i + _out->o;
-    printf("sortie = %d\n",i) ;
+void Extern__print_fast_step(int cnt, int i, int o, Extern__print_fast_out* _out){
+    printf("Fast : cpt = %d ; entree=%d\n",cnt, i) ;
+    printf("sortie = %d\n",o) ;
 }
 
-void Extern__gnc_step(int i,Extern__gnc_out*_out) {
-    printf("GNC : cpt = %d ; entree=%d\n",_out->o, i) ;
-        _out->o = _out->o + 1;
-    i =   i- _out->o;
-    printf("sortie = %d\n",i) ;
+void Extern__print_gnc_step(int cnt, int i, int o, Extern__print_gnc_out*_out) {
+    printf("GNC : cpt = %d ; entree=%d\n",cnt, i) ;
+    printf("sortie = %d\n",o) ;
 }
 
-void Extern__thermal_step(Extern__thermal_out*_out) {
-    printf("Thermal : cpt = 0 ; \n") ;
+void Extern__print_thermal_step(int cnt , Extern__print_thermal_out*_out) {
+    printf("Thermal : cpt = %d ; \n", cnt) ;
 }
